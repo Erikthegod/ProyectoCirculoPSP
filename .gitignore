@@ -4,3 +4,5 @@
 *.form
 
 *.form
+/build/
+/dist/

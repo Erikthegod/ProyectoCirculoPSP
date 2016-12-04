@@ -5,17 +5,25 @@
  */
 package com.erikthegod.circulo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Erikthegod
  */
 public class JFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFrame
-     */
+    Thread t1;
+    Boolean parado = false;
+    Pausador pausado;
+
     public JFrame() {
         initComponents();
+        pausado=new Pausador();
+        t1 = new Thread(new HilosVerdes(jbVerde1,pausado), "hilo1");
+        jbVerde1.setBounds(100, 200, 10, 10);
+        jbVerde2.setBounds(120, 220, 10, 10);
     }
 
     /**
@@ -27,21 +35,86 @@ public class JFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jbVerde1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jbVerde2 = new javax.swing.JButton();
+        jbParar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jbVerde1.setBackground(new java.awt.Color(0, 255, 51));
+        jbVerde1.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
+        jbVerde1.setForeground(new java.awt.Color(51, 255, 51));
+        jbVerde1.setToolTipText("");
+        jbVerde1.setOpaque(true);
+
+        jButton2.setText("Iniciar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jbVerde2.setBackground(new java.awt.Color(0, 255, 51));
+        jbVerde2.setForeground(new java.awt.Color(0, 255, 0));
+        jbVerde2.setOpaque(true);
+
+        jbParar.setText("Parar");
+        jbParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPararActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbParar)
+                .addGap(33, 33, 33))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(266, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbVerde1)
+                        .addGap(255, 255, 255))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbVerde2)
+                        .addGap(168, 168, 168))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jbVerde1)
+                .addGap(5, 5, 5)
+                .addComponent(jbVerde2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jbParar))
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        t1.start();
+        new Thread(new HilosVerdes(jbVerde2,pausado), "hilo2").start();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jbPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPararActionPerformed
+        if(pausado.parado()==true){
+            pausado.boton1=false;
+        }else{
+            pausado.boton1=true;
+        }
+    }//GEN-LAST:event_jbPararActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +152,9 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jbParar;
+    private javax.swing.JButton jbVerde1;
+    private javax.swing.JButton jbVerde2;
     // End of variables declaration//GEN-END:variables
 }
