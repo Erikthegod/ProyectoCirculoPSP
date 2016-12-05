@@ -25,7 +25,7 @@ public class HilosVerdes implements Runnable {
     int grado2 = 30;
     int grado3 = 60;
     int grado4 = 90;
-    Boolean stop;
+    int grado5 = 120;
     Pausador parador;
 
     public HilosVerdes(JButton bot, Pausador pausado) {
@@ -47,27 +47,62 @@ public class HilosVerdes implements Runnable {
                                 parador.wait();
                             }
                         } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-                    } else{
-                        synchronized (parador) {
-                                parador.notify();
-                            }
                     }
                 } else if (Thread.currentThread().getName().equals("hilo2")) {
                     boton.setLocation(posX(grado2), posY(grado2));
                     grado2 += 4;
                     Thread.sleep(30);
-                    
+                    if (parador.parado() == true) {
+                        try {
+                            synchronized (parador) {
+                                parador.wait();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                 } else if (Thread.currentThread().getName().equals("hilo3")) {
-                    boton.setLocation(posX(grado4), posY(grado4));
-                    grado2 += 4;
+                    boton.setLocation(posX(grado3), posY(grado3));
+                    grado3 += 4;
                     Thread.sleep(30);
+                    if (parador.parado() == true) {
+                        try {
+                            synchronized (parador) {
+                                parador.wait();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 } else if (Thread.currentThread().getName().equals("hilo4")) {
                     boton.setLocation(posX(grado4), posY(grado4));
-                    grado2 += 4;
+                    grado4 += 4;
                     Thread.sleep(30);
+                    if (parador.parado() == true) {
+                        try {
+                            synchronized (parador) {
+                                parador.wait();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else if (Thread.currentThread().getName().equals("hilo5")) {
+                    boton.setLocation(posX(grado5), posY(grado5));
+                    grado5 += 4;
+                    Thread.sleep(30);
+                    if (parador.parado() == true) {
+                        try {
+                            synchronized (parador) {
+                                parador.wait();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
 
             } catch (InterruptedException ex) {
@@ -94,23 +129,6 @@ public class HilosVerdes implements Runnable {
     public int posY(int grados) {
         y = (int) (posicionCentralY + (radio * sen(grados)));
         return y;
-    }
-
-    public void parada() {
-        if (parador.parado() == true) {
-            try {
-                synchronized (parador) {
-                    parador.wait();
-                }
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } else if (parador.parado() != true) {
-            synchronized (parador) {
-                parador.notify();
-            }
-        }
     }
 
 }

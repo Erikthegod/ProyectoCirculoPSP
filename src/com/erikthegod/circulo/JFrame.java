@@ -15,13 +15,28 @@ import java.util.logging.Logger;
 public class JFrame extends javax.swing.JFrame {
 
     Thread t1;
-    Boolean parado = false;
-    Pausador pausado;
+    Thread t2;
+    Thread t3;
+    Thread t4;
+    Thread t5;
+    Pausador pausado1;
+    Pausador pausado2;
+    Pausador pausado3;
+    Pausador pausado4;
+    Pausador pausado5;
 
     public JFrame() {
         initComponents();
-        pausado=new Pausador();
-        t1 = new Thread(new HilosVerdes(jbVerde1,pausado), "hilo1");
+        pausado1 = new Pausador();
+        pausado2 = new Pausador();
+        pausado3 = new Pausador();
+        pausado4 = new Pausador();
+        pausado5 = new Pausador();
+        t1 = new Thread(new HilosVerdes(jbVerde1, pausado1), "hilo1");
+        t2 = new Thread(new HilosVerdes(jbVerde2, pausado2), "hilo2");
+        t3 = new Thread(new HilosVerdes(jbVerde3, pausado3), "hilo3");
+        t4 = new Thread(new HilosVerdes(jbVerde4, pausado4), "hilo4");
+        t5 = new Thread(new HilosVerdes(jbVerde5, pausado5), "hilo5");
         jbVerde1.setBounds(100, 200, 10, 10);
         jbVerde2.setBounds(120, 220, 10, 10);
     }
@@ -39,6 +54,10 @@ public class JFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jbVerde2 = new javax.swing.JButton();
         jbParar = new javax.swing.JButton();
+        jcbBotones = new javax.swing.JComboBox<>();
+        jbVerde3 = new javax.swing.JButton();
+        jbVerde4 = new javax.swing.JButton();
+        jbVerde5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +85,17 @@ public class JFrame extends javax.swing.JFrame {
             }
         });
 
+        jcbBotones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boton 1", "Boton 2", "Boton 3", "Boton 4", "Boton 5" }));
+
+        jbVerde3.setBackground(new java.awt.Color(0, 255, 51));
+        jbVerde3.setOpaque(true);
+
+        jbVerde4.setBackground(new java.awt.Color(0, 255, 51));
+        jbVerde4.setOpaque(true);
+
+        jbVerde5.setBackground(new java.awt.Color(0, 255, 51));
+        jbVerde5.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,17 +104,27 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jcbBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbParar)
                 .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
+                .addContainerGap(185, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbVerde1)
-                        .addGap(255, 255, 255))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbVerde3)
+                        .addGap(93, 93, 93)
                         .addComponent(jbVerde2)
-                        .addGap(168, 168, 168))))
+                        .addGap(168, 168, 168))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbVerde1)
+                        .addGap(255, 255, 255))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addComponent(jbVerde4)
+                .addGap(26, 26, 26)
+                .addComponent(jbVerde5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,11 +132,18 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(91, 91, 91)
                 .addComponent(jbVerde1)
                 .addGap(5, 5, 5)
-                .addComponent(jbVerde2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbVerde2)
+                    .addComponent(jbVerde3))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbVerde4)
+                    .addComponent(jbVerde5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jbParar))
+                    .addComponent(jbParar)
+                    .addComponent(jcbBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -105,15 +152,60 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         t1.start();
-        new Thread(new HilosVerdes(jbVerde2,pausado), "hilo2").start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jbPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPararActionPerformed
-        if(pausado.parado()==true){
-            pausado.boton1=false;
-        }else{
-            pausado.boton1=true;
+        if (jcbBotones.getSelectedItem().equals("Boton 1")) {
+            if (pausado1.parado() == true) {
+                pausado1.boton = false;
+                synchronized (pausado1) {
+                    pausado1.notify();
+                }
+            } else {
+                pausado1.boton = true;
+            }
+        } else if (jcbBotones.getSelectedItem().equals("Boton 2")) {
+            if (pausado2.parado() == true) {
+                pausado2.boton = false;
+                synchronized (pausado2) {
+                    pausado2.notify();
+                }
+            } else {
+                pausado2.boton = true;
+            }
+        } else if (jcbBotones.getSelectedItem().equals("Boton 3")) {
+            if (pausado3.parado() == true) {
+                pausado3.boton = false;
+                synchronized (pausado3) {
+                    pausado3.notify();
+                }
+            } else {
+                pausado3.boton = true;
+            }
+        } else if (jcbBotones.getSelectedItem().equals("Boton 4")) {
+            if (pausado4.parado() == true) {
+                pausado4.boton = false;
+                synchronized (pausado4) {
+                    pausado4.notify();
+                }
+            } else {
+                pausado4.boton = true;
+            }
+        } else if (jcbBotones.getSelectedItem().equals("Boton 5")) {
+            if (pausado5.parado() == true) {
+                pausado5.boton = false;
+                synchronized (pausado5) {
+                    pausado5.notify();
+                }
+            } else {
+                pausado5.boton = true;
+            }
         }
+
     }//GEN-LAST:event_jbPararActionPerformed
 
     /**
@@ -156,5 +248,9 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton jbParar;
     private javax.swing.JButton jbVerde1;
     private javax.swing.JButton jbVerde2;
+    private javax.swing.JButton jbVerde3;
+    private javax.swing.JButton jbVerde4;
+    private javax.swing.JButton jbVerde5;
+    private javax.swing.JComboBox<String> jcbBotones;
     // End of variables declaration//GEN-END:variables
 }

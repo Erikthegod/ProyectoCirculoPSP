@@ -10,10 +10,10 @@ package com.erikthegod.circulo;
  * @author Erikthegod
  */
 public class Pausador {
-    Boolean boton1=false;
+    Boolean boton=false;
     
     public Boolean parado(){
-        return boton1;
+        return boton;
     }
     
 }
