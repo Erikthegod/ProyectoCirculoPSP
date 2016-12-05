@@ -37,8 +37,6 @@ public class JFrame extends javax.swing.JFrame {
         t3 = new Thread(new HilosVerdes(jbVerde3, pausado3), "hilo3");
         t4 = new Thread(new HilosVerdes(jbVerde4, pausado4), "hilo4");
         t5 = new Thread(new HilosVerdes(jbVerde5, pausado5), "hilo5");
-        jbVerde1.setBounds(100, 200, 10, 10);
-        jbVerde2.setBounds(120, 220, 10, 10);
     }
 
     /**
