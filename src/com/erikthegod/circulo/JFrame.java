@@ -19,11 +19,15 @@ public class JFrame extends javax.swing.JFrame {
     Thread t3;
     Thread t4;
     Thread t5;
+    Thread t6;
+    Thread t7;
+    Thread t8;
+    Thread t9;
+
     Pausador pausado1;
     Pausador pausado2;
     Pausador pausado3;
     Pausador pausado4;
-    Pausador pausado5;
 
     public JFrame() {
         initComponents();
@@ -31,12 +35,16 @@ public class JFrame extends javax.swing.JFrame {
         pausado2 = new Pausador();
         pausado3 = new Pausador();
         pausado4 = new Pausador();
-        pausado5 = new Pausador();
+
         t1 = new Thread(new HilosVerdes(jbVerde1, pausado1), "hilo1");
         t2 = new Thread(new HilosVerdes(jbVerde2, pausado2), "hilo2");
         t3 = new Thread(new HilosVerdes(jbVerde3, pausado3), "hilo3");
         t4 = new Thread(new HilosVerdes(jbVerde4, pausado4), "hilo4");
-        t5 = new Thread(new HilosVerdes(jbVerde5, pausado5), "hilo5");
+        t5 = new Thread(new HilosRojos(jbRojo1), "hiloR1");
+        t6 = new Thread(new HilosRojos(jbRojo2), "hiloR2");
+        t7 = new Thread(new HilosRojos(jbRojo3), "hiloR3");
+        t8 = new Thread(new HilosRojos(jbRojo4), "hiloR4");
+        t9 = new Thread(new HilosRojos(jbRojo5), "hiloR5");
     }
 
     /**
@@ -49,13 +57,17 @@ public class JFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jbVerde1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbIniciar = new javax.swing.JButton();
         jbVerde2 = new javax.swing.JButton();
         jbParar = new javax.swing.JButton();
         jcbBotones = new javax.swing.JComboBox<>();
         jbVerde3 = new javax.swing.JButton();
         jbVerde4 = new javax.swing.JButton();
-        jbVerde5 = new javax.swing.JButton();
+        jbRojo1 = new javax.swing.JButton();
+        jbRojo2 = new javax.swing.JButton();
+        jbRojo3 = new javax.swing.JButton();
+        jbRojo4 = new javax.swing.JButton();
+        jbRojo5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,10 +77,10 @@ public class JFrame extends javax.swing.JFrame {
         jbVerde1.setToolTipText("");
         jbVerde1.setOpaque(true);
 
-        jButton2.setText("Iniciar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbIniciar.setText("Iniciar");
+        jbIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbIniciarActionPerformed(evt);
             }
         });
 
@@ -83,7 +95,7 @@ public class JFrame extends javax.swing.JFrame {
             }
         });
 
-        jcbBotones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boton 1", "Boton 2", "Boton 3", "Boton 4", "Boton 5" }));
+        jcbBotones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boton 1", "Boton 2", "Boton 3", "Boton 4" }));
 
         jbVerde3.setBackground(new java.awt.Color(0, 255, 51));
         jbVerde3.setOpaque(true);
@@ -91,70 +103,134 @@ public class JFrame extends javax.swing.JFrame {
         jbVerde4.setBackground(new java.awt.Color(0, 255, 51));
         jbVerde4.setOpaque(true);
 
-        jbVerde5.setBackground(new java.awt.Color(0, 255, 51));
-        jbVerde5.setOpaque(true);
+        jbRojo1.setBackground(new java.awt.Color(255, 51, 51));
+        jbRojo1.setForeground(new java.awt.Color(255, 51, 51));
+        jbRojo1.setOpaque(true);
+
+        jbRojo2.setBackground(new java.awt.Color(255, 0, 0));
+        jbRojo2.setForeground(new java.awt.Color(255, 0, 0));
+        jbRojo2.setOpaque(true);
+        jbRojo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRojo2ActionPerformed(evt);
+            }
+        });
+
+        jbRojo3.setBackground(new java.awt.Color(255, 0, 0));
+        jbRojo3.setForeground(new java.awt.Color(255, 0, 0));
+        jbRojo3.setOpaque(true);
+        jbRojo3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRojo3ActionPerformed(evt);
+            }
+        });
+
+        jbRojo4.setBackground(new java.awt.Color(255, 0, 0));
+        jbRojo4.setForeground(new java.awt.Color(255, 0, 0));
+        jbRojo4.setOpaque(true);
+        jbRojo4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRojo4ActionPerformed(evt);
+            }
+        });
+
+        jbRojo5.setBackground(new java.awt.Color(255, 0, 0));
+        jbRojo5.setForeground(new java.awt.Color(255, 0, 0));
+        jbRojo5.setOpaque(true);
+        jbRojo5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRojo5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jcbBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jbIniciar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                        .addComponent(jcbBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jbRojo5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jbVerde4))
+                                .addComponent(jbRojo2)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jbRojo3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jbVerde1)))
+                            .addComponent(jbVerde3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jbVerde2)
+                                    .addComponent(jbRojo1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jbRojo4)))
+                        .addGap(103, 103, 103)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbParar)
                 .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(185, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbVerde3)
-                        .addGap(93, 93, 93)
-                        .addComponent(jbVerde2)
-                        .addGap(168, 168, 168))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbVerde1)
-                        .addGap(255, 255, 255))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addComponent(jbVerde4)
-                .addGap(26, 26, 26)
-                .addComponent(jbVerde5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jbVerde1)
-                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbVerde2)
-                    .addComponent(jbVerde3))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbVerde4)
-                    .addComponent(jbVerde5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jbParar)
-                    .addComponent(jcbBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbRojo1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbVerde2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbRojo4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbRojo3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbVerde3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbRojo5)
+                                .addGap(172, 172, 172)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbIniciar)
+                            .addComponent(jbParar)
+                            .addComponent(jcbBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jbRojo2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbVerde1)
+                        .addGap(35, 35, 35)
+                        .addComponent(jbVerde4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIniciarActionPerformed
         t1.start();
         t2.start();
         t3.start();
         t4.start();
         t5.start();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        t6.start();
+        t7.start();
+        t8.start();
+        t9.start();
+    }//GEN-LAST:event_jbIniciarActionPerformed
 
     private void jbPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPararActionPerformed
         if (jcbBotones.getSelectedItem().equals("Boton 1")) {
@@ -193,18 +269,25 @@ public class JFrame extends javax.swing.JFrame {
             } else {
                 pausado4.boton = true;
             }
-        } else if (jcbBotones.getSelectedItem().equals("Boton 5")) {
-            if (pausado5.parado() == true) {
-                pausado5.boton = false;
-                synchronized (pausado5) {
-                    pausado5.notify();
-                }
-            } else {
-                pausado5.boton = true;
-            }
         }
 
     }//GEN-LAST:event_jbPararActionPerformed
+
+    private void jbRojo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRojo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbRojo2ActionPerformed
+
+    private void jbRojo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRojo3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbRojo3ActionPerformed
+
+    private void jbRojo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRojo4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbRojo4ActionPerformed
+
+    private void jbRojo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRojo5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbRojo5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,13 +325,17 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jbIniciar;
     private javax.swing.JButton jbParar;
+    private javax.swing.JButton jbRojo1;
+    private javax.swing.JButton jbRojo2;
+    private javax.swing.JButton jbRojo3;
+    private javax.swing.JButton jbRojo4;
+    private javax.swing.JButton jbRojo5;
     private javax.swing.JButton jbVerde1;
     private javax.swing.JButton jbVerde2;
     private javax.swing.JButton jbVerde3;
     private javax.swing.JButton jbVerde4;
-    private javax.swing.JButton jbVerde5;
     private javax.swing.JComboBox<String> jcbBotones;
     // End of variables declaration//GEN-END:variables
 }
