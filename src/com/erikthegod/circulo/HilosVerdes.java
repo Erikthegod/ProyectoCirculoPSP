@@ -16,15 +16,26 @@ import javax.swing.JButton;
 public class HilosVerdes implements Runnable {
 
     JButton boton = new JButton();
-    int posicionCentralX = 250;
+
+    int posicionCentralX = 272;
     int posicionCentralY = 200;
-    int radio = 40;
+
+    static int radio1 = 40;
+    static int radio2 = 40;
+    static int radio3 = 40;
+    static int radio4 = 40;
+
     int x;
     int y;
     int grado1 = 0;
     int grado2 = 90;
     int grado3 = 180;
     int grado4 = 270;
+    static int velocidad1 = 8;
+    static int velocidad2 = 8;
+    static int velocidad3 = 8;
+    static int velocidad4 = 8;
+
     Pausador parador;
 
     public HilosVerdes(JButton bot, Pausador pausado) {
@@ -37,9 +48,9 @@ public class HilosVerdes implements Runnable {
         while (true == true) {
             try {
                 if (Thread.currentThread().getName().equals("hilo1")) {
-                    boton.setLocation(posX(grado1), posY(grado1));
-                    grado1 += 4;
-                    Thread.sleep(30);
+                    boton.setLocation(posX(grado1,radio1), posY(grado1,radio1));
+                    grado1 = grado1 + velocidad1;
+                    Thread.sleep(40);
                     if (parador.parado() == true) {
                         try {
                             synchronized (parador) {
@@ -50,9 +61,9 @@ public class HilosVerdes implements Runnable {
                         }
                     }
                 } else if (Thread.currentThread().getName().equals("hilo2")) {
-                    boton.setLocation(posX(grado2), posY(grado2));
-                    grado2 += 4;
-                    Thread.sleep(30);
+                    boton.setLocation(posX(grado2,radio2), posY(grado2,radio2));
+                    grado2 = grado2 + velocidad2;
+                    Thread.sleep(40);
                     if (parador.parado() == true) {
                         try {
                             synchronized (parador) {
@@ -64,9 +75,9 @@ public class HilosVerdes implements Runnable {
                     }
 
                 } else if (Thread.currentThread().getName().equals("hilo3")) {
-                    boton.setLocation(posX(grado3), posY(grado3));
-                    grado3 += 4;
-                    Thread.sleep(30);
+                    boton.setLocation(posX(grado3,radio3), posY(grado3,radio3));
+                    grado3 = grado3 + velocidad3;
+                    Thread.sleep(40);
                     if (parador.parado() == true) {
                         try {
                             synchronized (parador) {
@@ -77,9 +88,9 @@ public class HilosVerdes implements Runnable {
                         }
                     }
                 } else if (Thread.currentThread().getName().equals("hilo4")) {
-                    boton.setLocation(posX(grado4), posY(grado4));
-                    grado4 += 4;
-                    Thread.sleep(30);
+                    boton.setLocation(posX(grado4,radio4), posY(grado4,radio4));
+                    grado4 = grado4 + velocidad4;
+                    Thread.sleep(40);
                     if (parador.parado() == true) {
                         try {
                             synchronized (parador) {
@@ -107,12 +118,12 @@ public class HilosVerdes implements Runnable {
         return Math.sin(angulo);
     }
 
-    public int posX(int grados) {
+    public int posX(int grados,int radio) {
         x = (int) (posicionCentralX + (radio * cos(grados)));
         return x;
     }
 
-    public int posY(int grados) {
+    public int posY(int grados,int radio) {
         y = (int) (posicionCentralY + (radio * sen(grados)));
         return y;
     }
