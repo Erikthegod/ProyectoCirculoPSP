@@ -117,6 +117,13 @@
                   </Group>
               </Group>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Component id="jColision" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jCol" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -124,7 +131,12 @@
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jColision" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCol" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                       <Component id="jbAzul2" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -306,9 +318,6 @@
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRojo2ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbRojo3">
       <Properties>
@@ -320,9 +329,6 @@
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRojo3ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbRojo4">
       <Properties>
@@ -334,9 +340,6 @@
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRojo4ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbRojo5">
       <Properties>
@@ -348,9 +351,6 @@
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRojo5ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbAcelerar">
       <Properties>
@@ -441,6 +441,13 @@
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jColision">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Colisiones"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jCol">
     </Component>
   </SubComponents>
 </Form>

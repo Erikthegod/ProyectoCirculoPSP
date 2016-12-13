@@ -21,12 +21,12 @@ public class HilosAzules implements Runnable {
     int radio = 150;
     int x;
     int y;
-    int grado1 = 0;
-    int grado2 = 30;
-    int grado3 = 60;
-    int grado4 = 90;
-    int grado5 = 120;
-    int grado6 = 270;
+    static int grado1 = 0;
+    static int grado2 = 30;
+    static int grado3 = 60;
+    static int grado4 = 90;
+    static int grado5 = 120;
+    static int grado6 = 270;
 
     public HilosAzules(JButton bot) {
         boton = bot;

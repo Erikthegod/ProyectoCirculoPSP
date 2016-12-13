@@ -21,11 +21,11 @@ public class HilosRojos implements Runnable {
     int radio = 100;
     int x;
     int y;
-    int grado1 = 0;
-    int grado2 = 30;
-    int grado3 = 60;
-    int grado4 = 90;
-    int grado5 = 120;
+    static int gradoR1 = 0;
+    static int gradoR2 = 30;
+    static int gradoR3 = 60;
+    static int gradoR4 = 90;
+    static int gradoR5 = 120;
 
     public HilosRojos(JButton bot) {
         boton = bot;
@@ -36,28 +36,28 @@ public class HilosRojos implements Runnable {
         while (true == true) {
             try {
                 if (Thread.currentThread().getName().equals("hiloR1")) {
-                    boton.setLocation(posX(grado1), posY(grado1));
-                    grado1 += 4;
+                    boton.setLocation(posX(gradoR1), posY(gradoR1));
+                    gradoR1 += 2;
                     Thread.sleep(30);
 
                 } else if (Thread.currentThread().getName().equals("hiloR2")) {
-                    boton.setLocation(posX(grado2), posY(grado2));
-                    grado2 += 8;
+                    boton.setLocation(posX(gradoR2), posY(gradoR2));
+                    gradoR2 += 4;
                     Thread.sleep(30);
 
                 } else if (Thread.currentThread().getName().equals("hiloR3")) {
-                    boton.setLocation(posX(grado3), posY(grado3));
-                    grado3 += 2;
+                    boton.setLocation(posX(gradoR3), posY(gradoR3));
+                    gradoR3 += 6;
                     Thread.sleep(30);
 
                 } else if (Thread.currentThread().getName().equals("hiloR4")) {
-                    boton.setLocation(posX(grado4), posY(grado4));
-                    grado4 += 6;
+                    boton.setLocation(posX(gradoR4), posY(gradoR4));
+                    gradoR4 += 5;
                     Thread.sleep(30);
 
                 } else if (Thread.currentThread().getName().equals("hiloR5")) {
-                    boton.setLocation(posX(grado5), posY(grado5));
-                    grado5 += 10;
+                    boton.setLocation(posX(gradoR5), posY(gradoR5));
+                    gradoR5 += 8;
                     Thread.sleep(30);
                 }
 

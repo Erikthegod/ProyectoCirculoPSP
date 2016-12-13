@@ -5,6 +5,8 @@
  */
 package com.erikthegod.circulo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Erikthegod
@@ -31,6 +33,8 @@ public class JFrame extends javax.swing.JFrame {
     Pausador pausado2;
     Pausador pausado3;
     Pausador pausado4;
+
+    int colision;
 
     public JFrame() {
         initComponents();
@@ -87,6 +91,8 @@ public class JFrame extends javax.swing.JFrame {
         jbAzul4 = new javax.swing.JButton();
         jbAzul5 = new javax.swing.JButton();
         jbAzul6 = new javax.swing.JButton();
+        jColision = new javax.swing.JLabel();
+        jCol = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,38 +135,18 @@ public class JFrame extends javax.swing.JFrame {
         jbRojo2.setBackground(new java.awt.Color(255, 0, 0));
         jbRojo2.setForeground(new java.awt.Color(255, 0, 0));
         jbRojo2.setOpaque(true);
-        jbRojo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRojo2ActionPerformed(evt);
-            }
-        });
 
         jbRojo3.setBackground(new java.awt.Color(255, 0, 0));
         jbRojo3.setForeground(new java.awt.Color(255, 0, 0));
         jbRojo3.setOpaque(true);
-        jbRojo3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRojo3ActionPerformed(evt);
-            }
-        });
 
         jbRojo4.setBackground(new java.awt.Color(255, 0, 0));
         jbRojo4.setForeground(new java.awt.Color(255, 0, 0));
         jbRojo4.setOpaque(true);
-        jbRojo4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRojo4ActionPerformed(evt);
-            }
-        });
 
         jbRojo5.setBackground(new java.awt.Color(255, 0, 0));
         jbRojo5.setForeground(new java.awt.Color(255, 0, 0));
         jbRojo5.setOpaque(true);
-        jbRojo5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRojo5ActionPerformed(evt);
-            }
-        });
 
         jbAcelerar.setText("Acelerar");
         jbAcelerar.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +192,8 @@ public class JFrame extends javax.swing.JFrame {
         jbAzul6.setBackground(new java.awt.Color(51, 153, 255));
         jbAzul6.setForeground(new java.awt.Color(51, 204, 255));
         jbAzul6.setOpaque(true);
+
+        jColision.setText("Colisiones");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -279,13 +267,23 @@ public class JFrame extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jbAzul2)
                                 .addGap(301, 301, 301))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jColision)
+                .addGap(18, 18, 18)
+                .addComponent(jCol, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jColision)
+                            .addComponent(jCol, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(116, 116, 116)
                         .addComponent(jbAzul2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -411,22 +409,6 @@ public class JFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jbPararActionPerformed
 
-    private void jbRojo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRojo2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbRojo2ActionPerformed
-
-    private void jbRojo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRojo3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbRojo3ActionPerformed
-
-    private void jbRojo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRojo4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbRojo4ActionPerformed
-
-    private void jbRojo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRojo5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbRojo5ActionPerformed
-
     private void jbAcelerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcelerarActionPerformed
         if (jcbBotones.getSelectedItem().equals("Boton 1")) {
             HilosVerdes.velocidad1 = HilosVerdes.velocidad1 + 4;
@@ -461,28 +443,212 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jbMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMoverActionPerformed
         if (jcbBotones.getSelectedItem().equals("Boton 1")) {
+            System.out.println("verde" + HilosVerdes.gradoV1 % 360);
+            System.out.println("1 " + HilosRojos.gradoR1 % 360);
+            System.out.println("2 " + HilosRojos.gradoR2 % 360);
+            System.out.println("3 " + HilosRojos.gradoR3 % 360);
+            System.out.println("4 " + HilosRojos.gradoR4 % 360);
+            System.out.println("5 " + HilosRojos.gradoR5 % 360);
+            System.out.println("A1 " + HilosAzules.grado1 % 360);
+            System.out.println("A2 " + HilosAzules.grado2 % 360);
+            System.out.println("A3 " + HilosAzules.grado3 % 360);
+            System.out.println("A4 " + HilosAzules.grado4 % 360);
+            System.out.println("A5 " + HilosAzules.grado5 % 360);
+            System.out.println("A6 " + HilosAzules.grado6 % 360);
             if (HilosVerdes.radio1 == 40) {
-                HilosVerdes.radio1 = 100;
+                if ((HilosVerdes.gradoV1 % 360) < ((HilosRojos.gradoR1 + 10) % 360) && (HilosVerdes.gradoV1 % 360) >= ((HilosRojos.gradoR1 - 10) % 360)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosRojos.gradoR2 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosRojos.gradoR2 % 360) - 10)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosRojos.gradoR3 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosRojos.gradoR3 % 360) - 10)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosRojos.gradoR4 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosRojos.gradoR4 % 360) - 10)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosRojos.gradoR5 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosRojos.gradoR5 % 360) - 10)) {
+                    JOptionPane.showMessageDialog(null, "Colision");
+                    colision += 1;
+                    jCol.setText(String.valueOf(colision));
+                    if (colision == 3) {
+                        JOptionPane.showMessageDialog(null, "Has muerto");
+                        System.exit(0);
+                    }
+                } else {
+                    HilosVerdes.radio1 = 100;
+
+                }
             } else if (HilosVerdes.radio1 == 100) {
-                HilosVerdes.radio1 = 150;
+                if ((HilosVerdes.gradoV1 % 360) < ((HilosAzules.grado1 + 10) % 360) && (HilosVerdes.gradoV1 % 360) >= ((HilosAzules.grado1 - 10) % 360)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosAzules.grado2 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosAzules.grado2 % 360) - 10)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosAzules.grado3 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosAzules.grado3 % 360) - 10)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosAzules.grado4 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosAzules.grado4 % 360) - 10)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosAzules.grado5 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosAzules.grado5 % 360) - 10)
+                        || (HilosVerdes.gradoV1 % 360) < ((HilosAzules.grado6 % 360) + 10) && (HilosVerdes.gradoV1 % 360) >= ((HilosAzules.grado6 % 360))) {
+                    JOptionPane.showMessageDialog(null, "Colision");
+                    colision += 1;
+                    jCol.setText(String.valueOf(colision));
+                    if (colision == 3) {
+                        JOptionPane.showMessageDialog(null, "Has muerto");
+                        System.exit(0);
+                    }
+                } else {
+                    HilosVerdes.radio1 = 150;
+                    if(HilosVerdes.radio1==150 && HilosVerdes.radio2==150 && HilosVerdes.radio3==150 && HilosVerdes.radio4==150){
+                        JOptionPane.showMessageDialog(null, "Has salido ileso , Enhorabuena");
+                        System.exit(0);
+                    }
+
+                }
             }
         } else if (jcbBotones.getSelectedItem().equals("Boton 2")) {
+            System.out.println("verde " + HilosVerdes.gradoV2 % 360);
+            System.out.println("1 " + HilosRojos.gradoR1 % 360);
+            System.out.println("2 " + HilosRojos.gradoR2 % 360);
+            System.out.println("3 " + HilosRojos.gradoR3 % 360);
+            System.out.println("4 " + HilosRojos.gradoR4 % 360);
+            System.out.println("5 " + HilosRojos.gradoR5 % 360);
+            System.out.println("A1 " + HilosAzules.grado1 % 360);
+            System.out.println("A2 " + HilosAzules.grado2 % 360);
+            System.out.println("A3 " + HilosAzules.grado3 % 360);
+            System.out.println("A4 " + HilosAzules.grado4 % 360);
+            System.out.println("A5 " + HilosAzules.grado5 % 360);
+            System.out.println("A6 " + HilosAzules.grado6 % 360);
             if (HilosVerdes.radio2 == 40) {
-                HilosVerdes.radio2 = 100;
+                if ((HilosVerdes.gradoV2 % 360) < ((HilosRojos.gradoR1 + 10) % 360) && (HilosVerdes.gradoV2 % 360) >= ((HilosRojos.gradoR1 - 10) % 360)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosRojos.gradoR2 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosRojos.gradoR2 % 360) - 10)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosRojos.gradoR3 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosRojos.gradoR3 % 360) - 10)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosRojos.gradoR4 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosRojos.gradoR4 % 360) - 10)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosRojos.gradoR5 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosRojos.gradoR5 % 360) - 10)) {
+                    JOptionPane.showMessageDialog(null, "Colision");
+                    colision += 1;
+                    jCol.setText(String.valueOf(colision));
+                    if (colision == 3) {
+                        JOptionPane.showMessageDialog(null, "Has muerto");
+                        System.exit(0);
+                    }
+                } else {
+                    HilosVerdes.radio2 = 100;
+                }
             } else if (HilosVerdes.radio2 == 100) {
-                HilosVerdes.radio2 = 150;
+                if ((HilosVerdes.gradoV2 % 360) < ((HilosAzules.grado1 + 10) % 360) && (HilosVerdes.gradoV2 % 360) >= ((HilosAzules.grado1 - 10) % 360)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosAzules.grado2 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosAzules.grado2 % 360) - 10)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosAzules.grado3 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosAzules.grado3 % 360) - 10)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosAzules.grado4 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosAzules.grado4 % 360) - 10)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosAzules.grado5 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosAzules.grado5 % 360) - 10)
+                        || (HilosVerdes.gradoV2 % 360) < ((HilosAzules.grado6 % 360) + 10) && (HilosVerdes.gradoV2 % 360) >= ((HilosAzules.grado6 % 360))) {
+                    JOptionPane.showMessageDialog(null, "Colision");
+                    colision += 1;
+                    jCol.setText(String.valueOf(colision));
+                    if (colision == 3) {
+                        JOptionPane.showMessageDialog(null, "Has muerto");
+                        System.exit(0);
+                    }
+                } else {
+                    HilosVerdes.radio2 = 150;
+                    if(HilosVerdes.radio1==150 && HilosVerdes.radio2==150 && HilosVerdes.radio3==150 && HilosVerdes.radio4==150){
+                        JOptionPane.showMessageDialog(null, "Has salido ileso , Enhorabuena");
+                        System.exit(0);
+                    }
+
+                }
             }
         } else if (jcbBotones.getSelectedItem().equals("Boton 3")) {
+            System.out.println("verde " + HilosVerdes.gradoV3 % 360);
+            System.out.println("1 " + HilosRojos.gradoR1 % 360);
+            System.out.println("2 " + HilosRojos.gradoR2 % 360);
+            System.out.println("3 " + HilosRojos.gradoR3 % 360);
+            System.out.println("4 " + HilosRojos.gradoR4 % 360);
+            System.out.println("5 " + HilosRojos.gradoR5 % 360);
+            System.out.println("A1 " + HilosAzules.grado1 % 360);
+            System.out.println("A2 " + HilosAzules.grado2 % 360);
+            System.out.println("A3 " + HilosAzules.grado3 % 360);
+            System.out.println("A4 " + HilosAzules.grado4 % 360);
+            System.out.println("A5 " + HilosAzules.grado5 % 360);
+            System.out.println("A6 " + HilosAzules.grado6 % 360);
             if (HilosVerdes.radio3 == 40) {
-                HilosVerdes.radio3 = 100;
+                if ((HilosVerdes.gradoV3 % 360) < ((HilosRojos.gradoR1 + 10) % 360) && (HilosVerdes.gradoV3 % 360) >= ((HilosRojos.gradoR1 - 10) % 360)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosRojos.gradoR2 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosRojos.gradoR2 % 360) - 10)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosRojos.gradoR3 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosRojos.gradoR3 % 360) - 10)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosRojos.gradoR4 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosRojos.gradoR4 % 360) - 10)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosRojos.gradoR5 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosRojos.gradoR5 % 360) - 10)) {
+                    JOptionPane.showMessageDialog(null, "Colision");
+                    colision += 1;
+                    jCol.setText(String.valueOf(colision));
+                    if (colision == 3) {
+                        JOptionPane.showMessageDialog(null, "Has muerto");
+                        System.exit(0);
+                    }
+                } else {
+                    HilosVerdes.radio3 = 100;
+
+                }
             } else if (HilosVerdes.radio3 == 100) {
-                HilosVerdes.radio3 = 150;
+                if ((HilosVerdes.gradoV3 % 360) < ((HilosAzules.grado1 + 10) % 360) && (HilosVerdes.gradoV3 % 360) >= ((HilosAzules.grado1 - 10) % 360)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosAzules.grado2 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosAzules.grado2 % 360) - 10)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosAzules.grado3 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosAzules.grado3 % 360) - 10)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosAzules.grado4 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosAzules.grado4 % 360) - 10)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosAzules.grado5 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosAzules.grado5 % 360) - 10)
+                        || (HilosVerdes.gradoV3 % 360) < ((HilosAzules.grado6 % 360) + 10) && (HilosVerdes.gradoV3 % 360) >= ((HilosAzules.grado6 % 360))) {
+                    JOptionPane.showMessageDialog(null, "Colision");
+                    colision += 1;
+                    jCol.setText(String.valueOf(colision));
+                    if (colision == 3) {
+                        JOptionPane.showMessageDialog(null, "Has muerto");
+                        System.exit(0);
+                    }
+                } else {
+                    HilosVerdes.radio3 = 150;
+                    if (HilosVerdes.radio1 == 150 && HilosVerdes.radio2 == 150 && HilosVerdes.radio3 == 150 && HilosVerdes.radio4 == 150) {
+                        JOptionPane.showMessageDialog(null, "Has salido ileso , Enhorabuena");
+                        System.exit(0);
+                    }
+                }
             }
         } else if (jcbBotones.getSelectedItem().equals("Boton 4")) {
+            System.out.println("verde " + HilosVerdes.gradoV4 % 360);
+            System.out.println("1 " + HilosRojos.gradoR1 % 360);
+            System.out.println("2 " + HilosRojos.gradoR2 % 360);
+            System.out.println("3 " + HilosRojos.gradoR3 % 360);
+            System.out.println("4 " + HilosRojos.gradoR4 % 360);
+            System.out.println("5 " + HilosRojos.gradoR5 % 360);
+            System.out.println("A1 " + HilosAzules.grado1 % 360);
+            System.out.println("A2 " + HilosAzules.grado2 % 360);
+            System.out.println("A3 " + HilosAzules.grado3 % 360);
+            System.out.println("A4 " + HilosAzules.grado4 % 360);
+            System.out.println("A5 " + HilosAzules.grado5 % 360);
+            System.out.println("A6 " + HilosAzules.grado6 % 360);
             if (HilosVerdes.radio4 == 40) {
-                HilosVerdes.radio4 = 100;
+                if ((HilosVerdes.gradoV4 % 360) < ((HilosRojos.gradoR1 + 10) % 360) && (HilosVerdes.gradoV4 % 360) >= ((HilosRojos.gradoR1 - 10) % 360)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosRojos.gradoR2 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosRojos.gradoR2 % 360) - 10)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosRojos.gradoR3 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosRojos.gradoR3 % 360) - 10)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosRojos.gradoR4 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosRojos.gradoR4 % 360) - 10)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosRojos.gradoR5 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosRojos.gradoR5 % 360) - 10)) {
+                    JOptionPane.showMessageDialog(null, "Colision");
+                    colision += 1;
+                    jCol.setText(String.valueOf(colision));
+                    if (colision == 3) {
+                        JOptionPane.showMessageDialog(null, "Has muerto");
+                        System.exit(0);
+                    }
+                } else {
+                    HilosVerdes.radio4 = 100;
+                }
             } else if (HilosVerdes.radio4 == 100) {
-                HilosVerdes.radio4 = 150;
+                if ((HilosVerdes.gradoV4 % 360) < ((HilosAzules.grado1 + 10) % 360) && (HilosVerdes.gradoV4 % 360) >= ((HilosAzules.grado1 - 10) % 360)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosAzules.grado2 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosAzules.grado2 % 360) - 10)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosAzules.grado3 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosAzules.grado3 % 360) - 10)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosAzules.grado4 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosAzules.grado4 % 360) - 10)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosAzules.grado5 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosAzules.grado5 % 360) - 10)
+                        || (HilosVerdes.gradoV4 % 360) < ((HilosAzules.grado6 % 360) + 10) && (HilosVerdes.gradoV4 % 360) >= ((HilosAzules.grado6 % 360))) {
+                    JOptionPane.showMessageDialog(null, "Colision");
+                    colision += 1;
+                    jCol.setText(String.valueOf(colision));
+                    if (colision == 3) {
+                        JOptionPane.showMessageDialog(null, "Has muerto");
+                        System.exit(0);
+                    }
+                } else {
+                    HilosVerdes.radio4 = 150;
+                    if (HilosVerdes.radio1 == 150 && HilosVerdes.radio2 == 150 && HilosVerdes.radio3 == 150 && HilosVerdes.radio4 == 150) {
+                        JOptionPane.showMessageDialog(null, "Has salido ileso , Enhorabuena");
+                        System.exit(0);
+                    }
+                }
             }
         }
     }//GEN-LAST:event_jbMoverActionPerformed
@@ -523,6 +689,8 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jCol;
+    private javax.swing.JLabel jColision;
     private javax.swing.JButton jbAcelerar;
     private javax.swing.JButton jbAzul1;
     private javax.swing.JButton jbAzul2;

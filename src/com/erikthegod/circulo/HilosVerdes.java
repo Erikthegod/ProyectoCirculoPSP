@@ -27,10 +27,10 @@ public class HilosVerdes implements Runnable {
 
     int x;
     int y;
-    int grado1 = 0;
-    int grado2 = 90;
-    int grado3 = 180;
-    int grado4 = 270;
+    static int gradoV1 = 0;
+    static int gradoV2 = 90;
+    static int gradoV3 = 180;
+    static int gradoV4 = 270;
     static int velocidad1 = 8;
     static int velocidad2 = 8;
     static int velocidad3 = 8;
@@ -48,8 +48,8 @@ public class HilosVerdes implements Runnable {
         while (true == true) {
             try {
                 if (Thread.currentThread().getName().equals("hilo1")) {
-                    boton.setLocation(posX(grado1,radio1), posY(grado1,radio1));
-                    grado1 = grado1 + velocidad1;
+                    boton.setLocation(posX(gradoV1,radio1), posY(gradoV1,radio1));
+                    gradoV1 = gradoV1 + velocidad1;
                     Thread.sleep(40);
                     if (parador.parado() == true) {
                         try {
@@ -61,8 +61,8 @@ public class HilosVerdes implements Runnable {
                         }
                     }
                 } else if (Thread.currentThread().getName().equals("hilo2")) {
-                    boton.setLocation(posX(grado2,radio2), posY(grado2,radio2));
-                    grado2 = grado2 + velocidad2;
+                    boton.setLocation(posX(gradoV2,radio2), posY(gradoV2,radio2));
+                    gradoV2 = gradoV2 + velocidad2;
                     Thread.sleep(40);
                     if (parador.parado() == true) {
                         try {
@@ -75,8 +75,8 @@ public class HilosVerdes implements Runnable {
                     }
 
                 } else if (Thread.currentThread().getName().equals("hilo3")) {
-                    boton.setLocation(posX(grado3,radio3), posY(grado3,radio3));
-                    grado3 = grado3 + velocidad3;
+                    boton.setLocation(posX(gradoV3,radio3), posY(gradoV3,radio3));
+                    gradoV3 = gradoV3 + velocidad3;
                     Thread.sleep(40);
                     if (parador.parado() == true) {
                         try {
@@ -88,8 +88,8 @@ public class HilosVerdes implements Runnable {
                         }
                     }
                 } else if (Thread.currentThread().getName().equals("hilo4")) {
-                    boton.setLocation(posX(grado4,radio4), posY(grado4,radio4));
-                    grado4 = grado4 + velocidad4;
+                    boton.setLocation(posX(gradoV4,radio4), posY(gradoV4,radio4));
+                    gradoV4 = gradoV4 + velocidad4;
                     Thread.sleep(40);
                     if (parador.parado() == true) {
                         try {
