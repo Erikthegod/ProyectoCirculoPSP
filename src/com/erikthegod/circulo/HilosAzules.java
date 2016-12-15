@@ -15,13 +15,13 @@ import javax.swing.JButton;
  */
 public class HilosAzules implements Runnable {
 
-    JButton boton = new JButton();
+    JButton boton = new JButton(); 
     int posicionCentralX = 272;
     int posicionCentralY = 200;
-    int radio = 150;
-    int x;
-    int y;
-    static int grado1 = 0;
+    int radio = 150;//Radio del circulo que realizan los botones
+    int x;//Posicion x del boton
+    int y;//Posicion y del boton
+    static int grado1 = 0; //declaramos los grados staticos para que podamos variarlos en otras clases
     static int grado2 = 30;
     static int grado3 = 60;
     static int grado4 = 90;
@@ -29,16 +29,16 @@ public class HilosAzules implements Runnable {
     static int grado6 = 270;
 
     public HilosAzules(JButton bot) {
-        boton = bot;
+        boton = bot;//Asignamos el boton recibido al instanciado en la clase
     }
 
     @Override
     public void run() {
-        while (true == true) {
+        while (true == true) {//Se ejecuta durante toda la vida del hilo
             try {
-                if (Thread.currentThread().getName().equals("hiloA1")) {
-                    boton.setLocation(posX(grado1), posY(grado1));
-                    grado1 += 4;
+                if (Thread.currentThread().getName().equals("hiloA1")) {//dependiendo del hilo que se use
+                    boton.setLocation(posX(grado1), posY(grado1));//asignamos la posicion del boton
+                    grado1 += 4;//velocidad a la que se mueve el boton
                     Thread.sleep(30);
 
                 } else if (Thread.currentThread().getName().equals("hiloA2")) {

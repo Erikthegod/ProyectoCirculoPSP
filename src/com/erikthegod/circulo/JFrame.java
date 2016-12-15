@@ -5,6 +5,8 @@
  */
 package com.erikthegod.circulo;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,21 +30,23 @@ public class JFrame extends javax.swing.JFrame {
     Thread t13;
     Thread t14;
     Thread t15;
-
     Pausador pausado1;
     Pausador pausado2;
     Pausador pausado3;
     Pausador pausado4;
-
     int colision;
+    Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recursos/logo.png"));
 
     public JFrame() {
         initComponents();
+        setIconImage(icon);//Ponemos el icono al jframe
+        setTitle("Circulo infernal");
+        //Objetos que usamos para poder parar el hilo
         pausado1 = new Pausador();
         pausado2 = new Pausador();
         pausado3 = new Pausador();
         pausado4 = new Pausador();
-
+        //A cada hilo se le asocia un boton
         t1 = new Thread(new HilosVerdes(jbVerde1, pausado1), "hilo1");
         t2 = new Thread(new HilosVerdes(jbVerde2, pausado2), "hilo2");
         t3 = new Thread(new HilosVerdes(jbVerde3, pausado3), "hilo3");
@@ -94,7 +98,12 @@ public class JFrame extends javax.swing.JFrame {
         jColision = new javax.swing.JLabel();
         jCol = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jbVerde1.setBackground(new java.awt.Color(0, 255, 51));
         jbVerde1.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
@@ -351,6 +360,7 @@ public class JFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIniciarActionPerformed
+        //iniciamos todos los hilos
         t1.start();
         t2.start();
         t3.start();
@@ -369,11 +379,12 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbIniciarActionPerformed
 
     private void jbPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPararActionPerformed
+        //Dependiendo del boton elegido en el ComboBox para un boton u otro
         if (jcbBotones.getSelectedItem().equals("Boton 1")) {
             if (pausado1.parado() == true) {
                 pausado1.boton = false;
-                synchronized (pausado1) {
-                    pausado1.notify();
+                synchronized (pausado1) {//Se necesita usar synchronized para asociar un objeto al hilo y parar ese objeto y paras el hilo
+                    pausado1.notify();//Reactivas el hilo
                 }
             } else {
                 pausado1.boton = true;
@@ -410,6 +421,7 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPararActionPerformed
 
     private void jbAcelerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcelerarActionPerformed
+        //Aceleras los botones aumentando los grados que aumentan la velocidad de los hilos durante el where
         if (jcbBotones.getSelectedItem().equals("Boton 1")) {
             HilosVerdes.velocidad1 = HilosVerdes.velocidad1 + 4;
         } else if (jcbBotones.getSelectedItem().equals("Boton 2")) {
@@ -422,6 +434,8 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbAcelerarActionPerformed
 
     private void jbFrenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFrenarActionPerformed
+        //Frenas los botones disminuyendo los grados que se aumentan la velocidad de los hilos durante el where
+        //No deja que sea menor a 2 ya que sino iria en direccion contraria y aumentaria la velocidad pero al contrario
         if (jcbBotones.getSelectedItem().equals("Boton 1")) {
             if (HilosVerdes.velocidad1 > 2) {
                 HilosVerdes.velocidad1 = HilosVerdes.velocidad1 - 2;
@@ -442,6 +456,11 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbFrenarActionPerformed
 
     private void jbMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMoverActionPerformed
+        //Comprobamos primero en que circulo esta el boton y dependiendo en que circulo está comprobamos los grados 
+        //del boton elegido con los grados de los botones del circulo exterior, si coinciden en un rango de 20 grados colisiona
+        //y no deja salir al boton y incrementa en uno el número de colisiones, y si llegamos a las 3 morimos, en cambio si consigues
+        //sacar todos los botones a fuera ganas la partida
+
         if (jcbBotones.getSelectedItem().equals("Boton 1")) {
             System.out.println("verde" + HilosVerdes.gradoV1 % 360);
             System.out.println("1 " + HilosRojos.gradoR1 % 360);
@@ -488,7 +507,7 @@ public class JFrame extends javax.swing.JFrame {
                     }
                 } else {
                     HilosVerdes.radio1 = 150;
-                    if(HilosVerdes.radio1==150 && HilosVerdes.radio2==150 && HilosVerdes.radio3==150 && HilosVerdes.radio4==150){
+                    if (HilosVerdes.radio1 == 150 && HilosVerdes.radio2 == 150 && HilosVerdes.radio3 == 150 && HilosVerdes.radio4 == 150) {
                         JOptionPane.showMessageDialog(null, "Has salido ileso , Enhorabuena");
                         System.exit(0);
                     }
@@ -540,7 +559,7 @@ public class JFrame extends javax.swing.JFrame {
                     }
                 } else {
                     HilosVerdes.radio2 = 150;
-                    if(HilosVerdes.radio1==150 && HilosVerdes.radio2==150 && HilosVerdes.radio3==150 && HilosVerdes.radio4==150){
+                    if (HilosVerdes.radio1 == 150 && HilosVerdes.radio2 == 150 && HilosVerdes.radio3 == 150 && HilosVerdes.radio4 == 150) {
                         JOptionPane.showMessageDialog(null, "Has salido ileso , Enhorabuena");
                         System.exit(0);
                     }
@@ -653,6 +672,10 @@ public class JFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbMoverActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cerrar();
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -686,6 +709,17 @@ public class JFrame extends javax.swing.JFrame {
                 new JFrame().setVisible(true);
             }
         });
+    }
+
+    public void cerrar() {
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "En realidad desea realizar cerrar la aplicacion", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else {
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
